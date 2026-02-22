@@ -2,7 +2,7 @@
 
 void default_constants();
 void Blue_Right();
-void turn_example();
+void Blue_Left();
 void drive_and_turn();
 void wait_until_change_speed();
 void swing_example();

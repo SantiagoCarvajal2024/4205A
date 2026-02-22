@@ -51,6 +51,10 @@ void default_constants() {
 ///
 // Drive Example
 ///
+void Intake_move(int vel1, int vel2){
+  Intake_1.move_voltage(vel1);
+  Intake_2.move_voltage(vel2);
+}
 void Blue_Right() {
   /* The first parameter is target inches
   The second parameter is max speed the robot will drive at
@@ -64,16 +68,45 @@ void Blue_Right() {
   chassis.pid_wait();
   */
   chassis.odom_xyt_set(0_in, 0_in, 25_deg);
-  chassis.pid_odom_set(20_in, 127, true);
+  chassis.pid_odom_set(22_in, 127, true);
   chassis.pid_wait();
+  chassis.pid_odom_set(7_in, 85, true), Intake_move(12000,0);
+  chassis.pid_wait();
+  Intake_move(0,0);
+  chassis.pid_odom_set(135_deg, 127, true);
+  chassis.pid_wait();
+  chassis.pid_odom_set(31.5_in, 127, true);
+  chassis.pid_wait();
+  chassis.pid_odom_set(180_deg, 127, true), Intake_move(12000,0), 
+  Doinker.set_value(true);
+  chassis.pid_wait();
+  chassis.pid_odom_set(13_in, 110, true);
+  chassis.pid_wait();
+  delay(1000);
+  chassis.pid_odom_set(-36_in, 127, true);
+  chassis.pid_wait();
+  Intake_move(12000,12000), Doinker.set_value(false);
+  delay(800);
+  /*
+  chassis.pid_odom_set(18_in, 127, true);
+  chassis.pid_wait();
+  chassis.pid_odom_set(135_deg, 127, true);
+  chassi.pid_wait();
+  chassis.pid_odom_set(-22_in, 127, true);
+  chassis.pid_wait();
+  chassis.pid_odom_set(180_deg, 127, true);
+  chassi.pid_wait();
+  chassis.pid_doom_set(-16_in, 127, true);
+  chassis.pid_wait();
+  */
 }
 
 ///
 // Turn Example
 ///
-void turn_example() {
-  // The first parameter is the target in degrees
-  // The second parameter is max speed the robot will drive at
+void Blue_Left() {
+  /*The first parameter is the target in degrees
+  The second parameter is max speed the robot will drive at
 
   chassis.pid_turn_set(90_deg, TURN_SPEED);
   chassis.pid_wait();
@@ -83,6 +116,44 @@ void turn_example() {
 
   chassis.pid_turn_set(0_deg, TURN_SPEED);
   chassis.pid_wait();
+  */
+  chassis.odom_xyt_set(0_in, 0_in, -25_deg);
+  chassis.pid_odom_set(22_in, 127, true);
+  chassis.pid_wait();
+  chassis.pid_odom_set(7_in, 85, true), Intake_move(12000,0);
+  chassis.pid_wait();
+  Intake_move(0,0);
+  chassis.pid_odom_set(-135_deg, 127, true);
+  chassis.pid_wait();
+  chassis.pid_odom_set(-15_in, 127, true);
+  chassis.pid_wait();
+  Intake_move(12000,12000);
+  delay(800);
+  Intake_move(0,0);
+  chassis.pid_odom_set(46_in, 127, true);
+  chassis.pid_wait();
+  chassis.pid_odom_set(-180_deg, 127, true), Doinker.set_value(true),
+  Intake_move(12000,0);
+  chassis.pid_wait();
+  chassis.pid_odom_set(13_in, 127, true);
+  chassis.pid_wait();
+  delay(1000);
+  chassis.pid_odom_set(-36_in, 127, true);
+  chassis.pid_wait();
+  Intake_move(12000,12000), Doinker.set_value(false);
+  delay(800);
+    /*
+  chassis.pid_odom_set(18_in, 127, true);
+  chassis.pid_wait();
+  chassis.pid_odom_set(-135_deg, 127, true);
+  chassi.pid_wait();
+  chassis.pid_odom_set(-22_in, 127, true);
+  chassis.pid_wait();
+  chassis.pid_odom_set(-180_deg, 127, true);
+  chassi.pid_wait();
+  chassis.pid_doom_set(-16_in, 127, true);
+  chassis.pid_wait();
+  */
 }
 
 ///
