@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "ARCADE",
+    "project_name": "BLUE_RIGHT",
     "target": "v5",
     "templates": {
       "EZ-Template": {
@@ -424,9 +424,9 @@
       }
     },
     "upload_options": {
-      "description": "roboticsisez.com",
+      "description": "In",
       "icon": "pizza",
-      "slot": 6
+      "slot": 1
     },
     "use_early_access": false
   }
