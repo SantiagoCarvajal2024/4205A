@@ -21,7 +21,6 @@ void default_constants() {
   chassis.pid_swing_constants_set(6.0, 0.0, 65.0);           // Swing constants
   chassis.pid_odom_angular_constants_set(6.5, 0.0, 52.5);    // Angular control for odom motions
   chassis.pid_odom_boomerang_constants_set(5.8, 0.0, 32.5);  // Angular control for boomerang motions
-
   // Exit conditions
   chassis.pid_turn_exit_condition_set(90_ms, 3_deg, 250_ms, 7_deg, 500_ms, 500_ms);
   chassis.pid_swing_exit_condition_set(90_ms, 3_deg, 250_ms, 7_deg, 500_ms, 500_ms);
@@ -31,26 +30,18 @@ void default_constants() {
   chassis.pid_turn_chain_constant_set(3_deg);
   chassis.pid_swing_chain_constant_set(5_deg);
   chassis.pid_drive_chain_constant_set(3_in);
-
   // Slew constants
   chassis.slew_turn_constants_set(3_deg, 70);
   chassis.slew_drive_constants_set(3_in, 70);
   chassis.slew_swing_constants_set(3_in, 80);
-
   // The amount that turns are prioritized over driving in odom motions
   // - if you have tracking wheels, you can run this higher.  1.0 is the max
   chassis.odom_turn_bias_set(1.0);
-
   chassis.odom_look_ahead_set(7_in);           // This is how far ahead in the path the robot looks at
   chassis.odom_boomerang_distance_set(16_in);  // This sets the maximum distance away from target that the carrot point can be
   chassis.odom_boomerang_dlead_set(0.625);     // This handles how aggressive the end of boomerang motions are
-
   chassis.pid_angle_behavior_set(ez::shortest);  // Changes the default behavior for turning, this defaults it to the shortest path there
 }
-
-///
-// Drive Example
-///
 void Intake_move(int vel1, int vel2){
   Intake_1.move_voltage(vel1);
   Intake_2.move_voltage(vel2);
@@ -89,10 +80,6 @@ void Blue_Right() {
   chassis.pid_wait();
   */
 }
-
-///
-// Turn Example
-///
 void Blue_Left() {
   chassis.odom_xyt_set(0_in, 0_in, -25_deg);
   chassis.pid_odom_set(22_in, 127, true);
@@ -132,34 +119,14 @@ void Blue_Left() {
   chassis.pid_wait();
   */
 }
-
-///
-// Combining Turn + Drive
-///
 void drive_and_turn() {
-  chassis.pid_drive_set(24_in, DRIVE_SPEED, true);
+  chassis.odom_xyt_set(0_in, 0_in, 0_deg);
+  chassis.pid_odom_set(22_in, 127, true);
   chassis.pid_wait();
-
-  chassis.pid_turn_set(45_deg, TURN_SPEED);
-  chassis.pid_wait();
-
-  chassis.pid_turn_set(-45_deg, TURN_SPEED);
-  chassis.pid_wait();
-
-  chassis.pid_turn_set(0_deg, TURN_SPEED);
-  chassis.pid_wait();
-
-  chassis.pid_drive_set(-24_in, DRIVE_SPEED, true);
+  chassis.pid_turn_set(90_deg, 127, true);
   chassis.pid_wait();
 }
-
-///
-// Wait Until and Changing Max Speed
-///
 void wait_until_change_speed() {
-  // pid_wait_until will wait until the robot gets to a desired position
-
-  // When the robot gets to 6 inches slowly, the robot will travel the remaining distance at full speed
   chassis.pid_drive_set(24_in, 30, true);
   chassis.pid_wait_until(6_in);
   chassis.pid_speed_max_set(DRIVE_SPEED);  // After driving 6 inches at 30 speed, the robot will go the remaining distance at DRIVE_SPEED

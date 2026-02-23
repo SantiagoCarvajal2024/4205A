@@ -22,7 +22,6 @@ ez::Drive chassis(
 // - `4.0` is the distance from the center of the wheel to the center of the robot
 ez::tracking_wheel horiz_tracker(-20, 2.00, 4.0);  // This tracking wheel is perpendicular to the drive wheels
 ez::tracking_wheel vert_tracker(-4, 2.00, 2.55);   // This tracking wheel is parallel to the drive wheels
-
 /**
  * Runs initialization code. This occurs as soon as the program is started.
  *
@@ -64,7 +63,6 @@ void initialize() {
   ez::as::initialize();
   master.rumble(chassis.drive_imu_calibrated() ? "." : "---");
 }
-
 /**
  * Runs while the robot is in the disabled state of Field Management System or
  * the VEX Competition Switch, following either autonomous or opcontrol. When
@@ -73,7 +71,6 @@ void initialize() {
 void disabled() {
   // . . .
 }
-
 /**
  * Runs after initialize(), and before autonomous when connected to the Field
  * Management System or the VEX Competition Switch. This is intended for
@@ -86,7 +83,6 @@ void disabled() {
 void competition_initialize() {
   // . . .
 }
-
 /**
  * Runs the user autonomous code. This function will be started in its own task
  * with the default priority and stack size whenever the robot is enabled via
@@ -104,10 +100,8 @@ void autonomous() {
   chassis.drive_sensor_reset();               // Reset drive sensors to 0
   chassis.odom_xyt_set(0_in, 0_in, 0_deg);    // Set the current position, you can start at a specific position with this
   chassis.drive_brake_set(MOTOR_BRAKE_HOLD);  // Set motors to hold.  This helps autonomous consistency
-
   /*
   Odometry and Pure Pursuit are not magic
-
   It is possible to get perfectly consistent results without tracking wheels,
   but it is also possible to have extremely inconsistent results without tracking wheels.
   When you don't use tracking wheels, you need to:
@@ -117,10 +111,8 @@ void autonomous() {
   You can do cool curved motions, but you have to give your robot the best chance
   to be consistent
   */
-
   ez::as::auton_selector.selected_auton_call();  // Calls selected auton from autonomous selector
 }
-
 /**
  * Simplifies printing tracker values to the brain screen
  */
@@ -133,7 +125,6 @@ void screen_print_tracker(ez::tracking_wheel *tracker, std::string name, int lin
   }
   ez::screen_print(tracker_value + tracker_width, line);  // Print final tracker text
 }
-
 /**
  * Ez screen task
  * Adding new pages here will let you view them during user control or autonomous
@@ -161,18 +152,15 @@ void ez_screen_task() {
         }
       }
     }
-
     // Remove all blank pages when connected to a comp switch
     else {
       if (ez::as::page_blank_amount() > 0)
         ez::as::page_blank_remove_all();
     }
-
     pros::delay(ez::util::DELAY_TIME);
   }
 }
 pros::Task ezScreenTask(ez_screen_task);
-
 /**
  * Gives you some extras to run in your opcontrol:
  * - run your autonomous routine in opcontrol by pressing DOWN and B
@@ -185,7 +173,6 @@ void ez_template_extras() {
   if (!pros::competition::is_connected()) {
     // PID Tuner
     // - after you find values that you're happy with, you'll have to set them in auton.cpp
-
     // Enable / Disable PID Tuner
     //  When enabled:
     //  * use A and Y to increment / decrement the constants
@@ -199,18 +186,15 @@ void ez_template_extras() {
       autonomous();
       chassis.drive_brake_set(preference);
     }
-
     // Allow PID Tuner to iterate
     chassis.pid_tuner_iterate();
   }
-
   // Disable PID Tuner when connected to a comp switch
   else {
     if (chassis.pid_tuner_enabled())
       chassis.pid_tuner_disable();
   }
 }
-
 /**
  * Runs the operator control code. This function will be started in its own task
  * with the default priority and stack size whenever the robot is enabled via
@@ -229,9 +213,7 @@ void opcontrol() {
   chassis.drive_brake_set(MOTOR_BRAKE_COAST);
   int x = 0, y = 0, z = 0;
   while (true) {
-    // Gives you some extras to make EZ-Template ezier
     ez_template_extras();
-
     chassis.opcontrol_tank();  // Tank control
     // chassis.opcontrol_arcade_standard(ez::SPLIT);   // Standard split arcade
     // chassis.opcontrol_arcade_standard(ez::SINGLE);  // Standard single arcade
@@ -245,7 +227,7 @@ void opcontrol() {
       }
       else{
         Intake_1.move_voltage(12000);
-        Intake_1.move_voltage(12000);
+        Intake_2.move_voltage(12000);
         x = 0;
       }
       while(master.get_digital(DIGITAL_R1)) delay(20);
