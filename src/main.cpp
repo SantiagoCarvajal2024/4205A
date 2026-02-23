@@ -212,6 +212,8 @@ void opcontrol() {
   // This is preference to what you like to drive on
   chassis.drive_brake_set(MOTOR_BRAKE_COAST);
   int x = 0, y = 0, z = 0;
+  Doinker.set_value(true);
+  Recarga.set_value(true);
   while (true) {
     ez_template_extras();
     // chassis.opcontrol_tank();  // Tank control
@@ -238,26 +240,26 @@ void opcontrol() {
     }
     if (master.get_digital(DIGITAL_Y)){
       if (y==0){
-        Doinker.set_value(true);
+        Doinker.set_value(false);
         y = 1;
       }
       else{
-        Doinker.set_value(false);
+        Doinker.set_value(true);
         y = 0;
       }
       while(master.get_digital(DIGITAL_Y)) delay(20);
     }
     if (master.get_digital(DIGITAL_RIGHT)){
       if (z==0){
-        Recarga.set_value(true);
+        Recarga.set_value(false);
         z = 1;
       }
       else{
-        Recarga.set_value(false);
+        Recarga.set_value(true);
         z = 0;
       }
       while(master.get_digital(DIGITAL_RIGHT)) delay(20);
     }
-    pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
+    delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
   }
 }

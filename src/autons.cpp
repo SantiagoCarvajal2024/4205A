@@ -9,7 +9,8 @@
 const int DRIVE_SPEED = 110;
 const int TURN_SPEED = 90;
 const int SWING_SPEED = 110;
-
+Doinker.set_value(true);
+Recarga.set_value(true);
 ///
 // Constants
 ///
@@ -50,24 +51,25 @@ void Blue_Right() {
   chassis.odom_xyt_set(0_in, 0_in, 32.7_deg);
   chassis.pid_odom_set(14_in, 127, true);
   chassis.pid_wait();
-  chassis.pid_odom_set(14_in, 60, true), Intake_move(12000,0);
+  chassis.pid_odom_set(17_in, 60, true), Intake_move(12000,0);
   chassis.pid_wait();
   delay(400);
   Intake_move(0,0);
   chassis.pid_turn_set(135_deg, 127, true);
   chassis.pid_wait();
-  chassis.pid_odom_set(33.9_in, 127, true);
+  chassis.pid_odom_set(40_in, 127, true);
   chassis.pid_wait();
   chassis.pid_turn_set(180_deg, 127, true), Intake_move(12000,0), 
-  Doinker.set_value(true);
+  Doinker.set_value(false);
   delay(200);
+  /*
   chassis.pid_wait();
-  chassis.pid_odom_set(8_in, 127, true); 
+  chassis.pid_odom_set(2_in, 127, true); 
   chassis.pid_wait();
   delay(1000);
-  chassis.pid_odom_set(-18_in, 127, true);
+  chassis.pid_odom_set(-30_in, 127, true);
   chassis.pid_wait();
-  Intake_move(12000,12000), Doinker.set_value(false);
+  Intake_move(12000,12000), Doinker.set_value(true);
   delay(800);
   /*
   chassis.pid_odom_set(18_in, 127, true);
@@ -99,7 +101,7 @@ void Blue_Left() {
   Intake_move(0,0);
   chassis.pid_odom_set(55.9_in, 127, true);
   chassis.pid_wait();
-  chassis.pid_turn_set(-180_deg, 127, true), Doinker.set_value(true),
+  chassis.pid_turn_set(-180_deg, 127, true), Doinker.set_value(false),
   Intake_move(12000,0);
   chassis.pid_wait();
   chassis.pid_odom_set(8_in, 127, true);
@@ -107,7 +109,7 @@ void Blue_Left() {
   delay(1000);
   chassis.pid_odom_set(-18_in, 127, true);
   chassis.pid_wait();
-  Intake_move(12000,12000), Doinker.set_value(false);
+  Intake_move(12000,12000), Doinker.set_value(true);
   delay(800);
   /*
   chassis.pid_odom_set(18_in, 127, true);
