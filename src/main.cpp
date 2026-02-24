@@ -220,10 +220,10 @@ void opcontrol() {
   Intake_2.move_voltage(0);
   while (true) {
     ez_template_extras();
-    // chassis.opcontrol_tank();  // Tank control
+    chassis.opcontrol_tank();  // Tank control
     // chassis.opcontrol_arcade_standard(ez::SPLIT);   // Standard split arcade
     // chassis.opcontrol_arcade_standard(ez::SINGLE);  // Standard single arcade
-    chassis.opcontrol_arcade_flipped(ez::SPLIT);    // Flipped split arcade
+    // chassis.opcontrol_arcade_flipped(ez::SPLIT);    // Flipped split arcade
     // chassis.opcontrol_arcade_flipped(ez::SINGLE);   // Flipped single arcade
     if (master.get_digital(DIGITAL_R1)){
       if(x==0){
@@ -241,6 +241,7 @@ void opcontrol() {
     if (master.get_digital(DIGITAL_R2)){
       Intake_1.move_voltage(0);
       Intake_2.move_voltage(0);
+      x = 0;
     }
     if (master.get_digital(DIGITAL_Y)){
       if (y==0){
