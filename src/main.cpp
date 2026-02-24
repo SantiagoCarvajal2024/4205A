@@ -216,6 +216,8 @@ void opcontrol() {
   int x = 0, y = 0, z = 0;
   Doinker.set_value(true);
   Recarga.set_value(true);
+  Intake_1.move_voltage(0);
+  Intake_2.move_voltage(0);
   while (true) {
     ez_template_extras();
     // chassis.opcontrol_tank();  // Tank control
