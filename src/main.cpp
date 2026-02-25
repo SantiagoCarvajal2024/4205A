@@ -56,7 +56,7 @@ void initialize() {
   // chassis.opcontrol_curve_buttons_right_set(pros::E_CONTROLLER_DIGITAL_Y, pros::E_CONTROLLER_DIGITAL_A);
 
   // Autonomous Selector using LLEMU
-  ez::as::auton_selector.autons_add({{"Azul Derecha", Blue_Left},});
+  ez::as::auton_selector.autons_add({{"Azul Derecha", Blue_Right},});
 
   // Initialize chassis and auton selector
   chassis.initialize();
@@ -237,6 +237,11 @@ void opcontrol() {
         x = 0;
       }
       while(master.get_digital(DIGITAL_R1)) delay(20);
+    }
+    if (master.get_digital(DIGITAL_L2)){
+      Intake_1.move_voltage(-12000);
+      Intake_2.move_voltage(-12000);
+      x = 0;
     }
     if (master.get_digital(DIGITAL_R2)){
       Intake_1.move_voltage(0);
