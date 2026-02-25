@@ -56,7 +56,7 @@ void initialize() {
   // chassis.opcontrol_curve_buttons_right_set(pros::E_CONTROLLER_DIGITAL_Y, pros::E_CONTROLLER_DIGITAL_A);
 
   // Autonomous Selector using LLEMU
-  ez::as::auton_selector.autons_add({{"Azul Derecha", Blue_Right},});
+  ez::as::auton_selector.autons_add({{"Azul Derecha", Blue_Left},});
 
   // Initialize chassis and auton selector
   chassis.initialize();

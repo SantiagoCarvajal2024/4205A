@@ -83,10 +83,10 @@ void Blue_Right() {
   */
 }
 void Blue_Left() {
-  chassis.odom_xyt_set(0_in, 0_in, 32.7_deg);
+  chassis.odom_xyt_set(0_in, 0_in, -32.7_deg);
   chassis.pid_odom_set(13_in, 127, true);
   chassis.pid_wait();
-  chassis.pid_odom_set(18_in, 60, true), Intake_move(12000,0);
+  chassis.pid_odom_set(17.5_in, 60, true), Intake_move(12000,0);
   chassis.pid_wait();
   delay(400);
   chassis.pid_turn_set(-135_deg, 127, true);
@@ -94,16 +94,18 @@ void Blue_Left() {
   chassis.pid_odom_set(-22_in, 127, true);
   chassis.pid_wait();
   Intake_move(12000,0);
-  delay(800);
-  Intake_move(0,0);
-  chassis.pid_odom_set(55.9_in, 127, true);
-  chassis.pid_wait();
-  chassis.pid_turn_set(-180_deg, 127, true), Doinker.set_value(false),
-  Intake_move(12000,0);
-  chassis.pid_wait();
-  chassis.pid_odom_set(8_in, 127, true);
-  chassis.pid_wait();
   delay(1000);
+  Intake_move(0,0);
+  chassis.pid_odom_set(54.3_in, 127, true);
+  chassis.pid_wait();
+  chassis.pid_turn_set(-180_deg, 127, true), Intake_move(12000,0), 
+  chassis.pid_wait();
+  Doinker.set_value(false);
+  delay(400);
+  chassis.pid_odom_set(11_in, 110, true); 
+  chassis.pid_wait();
+  delay(1200);
+  /*
   chassis.pid_odom_set(-18_in, 127, true);
   chassis.pid_wait();
   Intake_move(12000,12000), Doinker.set_value(true);
