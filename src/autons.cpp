@@ -86,27 +86,28 @@ void Blue_Left() {
   chassis.odom_xyt_set(0_in, 0_in, -32.7_deg);
   chassis.pid_odom_set(13_in, 127, true);
   chassis.pid_wait();
-  chassis.pid_odom_set(17.5_in, 60, true), Intake_move(12000,0);
+  chassis.pid_odom_set(12_in, 60, true), Intake_move(12000,0);
+  chassis.pid_wait();
+  chassis.pid_odom_set(8_in, 40, true);
   chassis.pid_wait();
   delay(400);
   chassis.pid_turn_set(-135_deg, 127, true);
   chassis.pid_wait();
-  chassis.pid_odom_set(-22_in, 127, true);
+  chassis.pid_odom_set(-23_in, 127, true);
   chassis.pid_wait();
   Intake_move(12000,0);
-  delay(1000);
+  delay(1400);
   Intake_move(0,0);
-  chassis.pid_odom_set(54.3_in, 127, true);
+  chassis.pid_odom_set(58.5_in, 127, true);
   chassis.pid_wait();
   chassis.pid_turn_set(-180_deg, 127, true), Intake_move(12000,0), 
   chassis.pid_wait();
   Doinker.set_value(false);
   delay(400);
-  chassis.pid_odom_set(11_in, 110, true); 
+  chassis.pid_odom_set(7_in, 110, true); 
   chassis.pid_wait();
-  delay(1200);
-  /*
-  chassis.pid_odom_set(-18_in, 127, true);
+  delay(1000);
+  chassis.pid_odom_set(-28_in, 127, true);
   chassis.pid_wait();
   Intake_move(12000,12000), Doinker.set_value(true);
   delay(800);
@@ -131,32 +132,44 @@ void drive_and_turn() {
   chassis.pid_turn_set(0_deg, 127, true);
   chassis.pid_wait();
   */
-  chassis.odom_xyt_set(0_in, 0_in, 32.6_deg);
-  chassis.pid_odom_set(8_in, 100, true);
+  chassis.odom_xyt_set(0_in, 0_in, 32.7_deg);
+  chassis.pid_odom_set(13_in, 127, true);
   chassis.pid_wait();
-  chassis.pid_turn_set(0_deg ,127, true);
+  chassis.pid_odom_set(18_in, 60, true), Intake_move(12000,0);
+  chassis.pid_wait();
+  delay(600);
+  chassis.pid_turn_set(-45_deg, 127, true);
   chassis.pid_wait();
 }
 void wait_until_change_speed() {
-  chassis.pid_drive_set(24_in, 30, true);
-  chassis.pid_wait_until(6_in);
-  chassis.pid_speed_max_set(DRIVE_SPEED);  // After driving 6 inches at 30 speed, the robot will go the remaining distance at DRIVE_SPEED
+  chassis.odom_xyt_set(0_in, 0_in, 32.7_deg);
+  chassis.pid_odom_set(13_in, 127, true);
   chassis.pid_wait();
-
-  chassis.pid_turn_set(45_deg, TURN_SPEED);
+  chassis.pid_odom_set(12_in, 60, true), Intake_move(12000,0);
   chassis.pid_wait();
-
-  chassis.pid_turn_set(-45_deg, TURN_SPEED);
+  chassis.pid_odom_set(8_in, 40, true);
   chassis.pid_wait();
-
-  chassis.pid_turn_set(0_deg, TURN_SPEED);
+  delay(400);
+  chassis.pid_turn_set(135_deg, 127, true);
   chassis.pid_wait();
-
-  // When the robot gets to -6 inches slowly, the robot will travel the remaining distance at full speed
-  chassis.pid_drive_set(-24_in, 30, true);
-  chassis.pid_wait_until(-6_in);
-  chassis.pid_speed_max_set(DRIVE_SPEED);  // After driving 6 inches at 30 speed, the robot will go the remaining distance at DRIVE_SPEED
+  chassis.pid_odom_set(-23_in, 127, true);
   chassis.pid_wait();
+  Intake_move(12000,0);
+  delay(1400);
+  Intake_move(0,0);
+  chassis.pid_odom_set(58.5_in, 127, true);
+  chassis.pid_wait();
+  chassis.pid_turn_set(180_deg, 127, true), Intake_move(12000,0), 
+  chassis.pid_wait();
+  Doinker.set_value(false);
+  delay(400);
+  chassis.pid_odom_set(6.5_in, 110, true); 
+  chassis.pid_wait();
+  delay(1000);
+  chassis.pid_odom_set(-28_in, 127, true);
+  chassis.pid_wait();
+  Intake_move(12000,12000), Doinker.set_value(true);
+  delay(800);
 }
 
 ///
