@@ -93,7 +93,7 @@ void Blue_Left() {
   delay(400);
   chassis.pid_turn_set(-135_deg, 127, true);
   chassis.pid_wait();
-  chassis.pid_odom_set(-23_in, 127, true);
+  chassis.pid_odom_set(-22_in, 120, true);
   chassis.pid_wait();
   Intake_move(12000,0);
   delay(1400);
@@ -110,28 +110,8 @@ void Blue_Left() {
   chassis.pid_odom_set(-28_in, 127, true);
   chassis.pid_wait();
   Intake_move(12000,12000), Doinker.set_value(true);
-  delay(800);
-  /*
-  chassis.pid_odom_set(18_in, 127, true);
-  chassis.pid_wait();
-  chassis.pid_turn_set(-135_deg, 127, true);
-  chassi.pid_wait();
-  chassis.pid_odom_set(-22_in, 127, true);
-  chassis.pid_wait();
-  chassis.pid_turn_set(-180_deg, 127, true);
-  chassi.pid_wait();
-  chassis.pid_doom_set(-16_in, 127, true);
-  chassis.pid_wait();
-  */ 
 }
-void drive_and_turn() {
-  /*
-  chassis.odom_xyt_set(0_in, 0_in, 33_deg);
-  chassis.pid_odom_set(15_in, 100, true);
-  chassis.pid_wait();
-  chassis.pid_turn_set(0_deg, 127, true);
-  chassis.pid_wait();
-  */
+void Red_Right() {
   chassis.odom_xyt_set(0_in, 0_in, 32.7_deg);
   chassis.pid_odom_set(13_in, 127, true);
   chassis.pid_wait();
@@ -141,7 +121,7 @@ void drive_and_turn() {
   chassis.pid_turn_set(-45_deg, 127, true);
   chassis.pid_wait();
 }
-void wait_until_change_speed() {
+void Red_Left() {
   chassis.odom_xyt_set(0_in, 0_in, 32.7_deg);
   chassis.pid_odom_set(13_in, 127, true);
   chassis.pid_wait();
@@ -152,7 +132,7 @@ void wait_until_change_speed() {
   delay(400);
   chassis.pid_turn_set(135_deg, 127, true);
   chassis.pid_wait();
-  chassis.pid_odom_set(-23_in, 127, true);
+  chassis.pid_odom_set(-22_in, 120, true);
   chassis.pid_wait();
   Intake_move(12000,0);
   delay(1400);
@@ -163,35 +143,42 @@ void wait_until_change_speed() {
   chassis.pid_wait();
   Doinker.set_value(false);
   delay(400);
-  chassis.pid_odom_set(6.5_in, 110, true); 
+  chassis.pid_odom_set(7_in, 110, true); 
   chassis.pid_wait();
   delay(1000);
   chassis.pid_odom_set(-28_in, 127, true);
   chassis.pid_wait();
   Intake_move(12000,12000), Doinker.set_value(true);
-  delay(800);
 }
-
-///
-// Swing Example
-///
-void swing_example() {
-  // The first parameter is ez::LEFT_SWING or ez::RIGHT_SWING
-  // The second parameter is the target in degrees
-  // The third parameter is the speed of the moving side of the drive
-  // The fourth parameter is the speed of the still side of the drive, this allows for wider arcs
-
-  chassis.pid_swing_set(ez::LEFT_SWING, 45_deg, SWING_SPEED, 45);
+void Skill() {
+  chassis.odom_xyt_set(0_in, 0_in, -32.7_deg);
+  chassis.pid_odom_set(13_in, 127, true);
   chassis.pid_wait();
-
-  chassis.pid_swing_set(ez::RIGHT_SWING, 0_deg, SWING_SPEED, 45);
+  chassis.pid_odom_set(12_in, 60, true), Intake_move(12000,0);
   chassis.pid_wait();
-
-  chassis.pid_swing_set(ez::RIGHT_SWING, 45_deg, SWING_SPEED, 45);
+  chassis.pid_odom_set(8_in, 40, true);
   chassis.pid_wait();
-
-  chassis.pid_swing_set(ez::LEFT_SWING, 0_deg, SWING_SPEED, 45);
+  delay(400);
+  chassis.pid_turn_set(-135_deg, 127, true);
   chassis.pid_wait();
+  chassis.pid_odom_set(-22_in, 120, true);
+  chassis.pid_wait();
+  Intake_move(12000,0);
+  delay(2000);
+  Intake_move(0,0);
+  chassis.pid_odom_set(58.5_in, 127, true);
+  chassis.pid_wait();
+  chassis.pid_turn_set(-180_deg, 127, true), Intake_move(12000,0), 
+  chassis.pid_wait();
+  Doinker.set_value(false);
+  delay(400);
+  chassis.pid_odom_set(7_in, 110, true); 
+  chassis.pid_wait();
+  delay(2000);
+  chassis.pid_odom_set(-28_in, 127, true);
+  chassis.pid_wait();
+  Intake_move(12000,12000), Doinker.set_value(true);
+  delay(2000);
 }
 
 ///
