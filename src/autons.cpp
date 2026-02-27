@@ -152,11 +152,28 @@ void Red_Left() {
 }
 void Skill() {
   chassis.odom_xyt_set(0_in, 0_in, -90_deg);
-  chassis.pid_odom_set(12_in, 127, true), Intake_move(12000,0);
+  chassis.pid_odom_set(31_in, 127, true);
   chassis.pid_wait();
-  delay(1600);
-  chassis.pid_odom_set(18_in, 127, true);
+  chassis.pid_turn_set(-180_deg, 127, true);
   chassis.pid_wait();
+  Recarga.set_value(false);
+  delay(500);
+  chassis.pid_odom_set(13_in, 120, true), Intake_move(12000,0);
+  chassis.pid_wait();
+  delay(2000);
+  chassis.pid_odom_set(-30_in, 127, true);
+  chassis.pid_wait();
+  Intake_move(12000,12000);
+  delay(1500);
+  chassis.pid_odom_set(13_in, 127, true);
+  chassis.pid_wait();
+  chassis.pid_turn_set(-135_deg, 127, true);
+  chassis.pid_wait();
+  chassis.pid_odom_set(-22_in, 127, true);
+  chassis.pid_wait();
+  chassis.pid_turn_set(-180_deg, 127, true);
+  chassis.pid_wait();
+  Doinker.set_value(false);
 }
 
 ///
