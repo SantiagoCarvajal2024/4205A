@@ -47,7 +47,8 @@ void initialize() {
   chassis.opcontrol_curve_buttons_toggle(true);   // Enables modifying the controller curve with buttons on the joysticks
   chassis.opcontrol_drive_activebrake_set(0.0);   // Sets the active brake kP. We recommend ~2.  0 will disable.
   chassis.opcontrol_curve_default_set(0.0, 0.0);  // Defaults for curve. If using tank, only the first parameter is used. (Comment this line out if you have an SD card!)
-
+  Doinker.set_value(true);
+  Recarga.set_value(true);
   // Set the drive to your own constants from autons.cpp!
   default_constants();
 
@@ -56,7 +57,7 @@ void initialize() {
   // chassis.opcontrol_curve_buttons_right_set(pros::E_CONTROLLER_DIGITAL_Y, pros::E_CONTROLLER_DIGITAL_A);
 
   // Autonomous Selector using LLEMU
-  ez::as::auton_selector.autons_add({{"Azul Derecha", Skill},});
+  ez::as::auton_selector.autons_add({{"Azul Derecha", Blue_Left},});
 
   // Initialize chassis and auton selector
   chassis.initialize();
@@ -69,7 +70,6 @@ void initialize() {
  * the robot is enabled, this task will exit.
  */
 void disabled() {
-  // . . .
 }
 /**
  * Runs after initialize(), and before autonomous when connected to the Field
